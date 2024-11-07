@@ -54,6 +54,3 @@ Container(
 1. text: berisi teks yang akan ditampilkan 
 2. style: berisi style dari teks yang nantinya akan ditampilkan seperti warna merah untuk pewarnaan teks dan ukuran font dari tekst tersebut
 3. maxLines: berisi maksimal baris dari teks yang nantinya akan ditampilkan. Contohnya pada kode program yang sesuai dengan modul tersebut maxLines memiliki nilai 2, sehingga teks yang ada di dalam kontainer tersebut maksimal akan ditampilkan dua baris
-
-## Hasil Kode Program
-![alt text](image-1.png)
