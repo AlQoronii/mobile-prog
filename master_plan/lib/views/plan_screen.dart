@@ -1,10 +1,10 @@
-import 'package:master_plan/provider/plan_provider.dart';
-
-import '../models/data_layer.dart';
 import 'package:flutter/material.dart';
+import '../models/data_layer.dart';
+import '../provider/plan_provider.dart';
 
 class PlanScreen extends StatefulWidget {
-  const PlanScreen({super.key});
+  final String planName; // Nama Plan untuk diakses
+  const PlanScreen({super.key, required this.planName});
 
   @override
   State createState() => _PlanScreenState();
@@ -12,12 +12,13 @@ class PlanScreen extends StatefulWidget {
 
 class _PlanScreenState extends State<PlanScreen> {
   late ScrollController scrollController;
+
   @override
   void initState() {
     super.initState();
     scrollController = ScrollController()
       ..addListener(() {
-        FocusScope.of(context).requestFocus(FocusNode());
+        FocusScope.of(context).unfocus();
       });
   }
 
@@ -29,36 +30,54 @@ class _PlanScreenState extends State<PlanScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final plansNotifier = PlanProvider.of(context);
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Master Plan Fathurrozak',
-            style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.purple,
+      appBar: AppBar(title: Text(widget.planName)),
+      body: ValueListenableBuilder<List<Plan>>(
+        valueListenable: plansNotifier,
+        builder: (context, plans, child) {
+          final currentPlan = plans.firstWhere(
+            (p) => p.name == widget.planName,
+            orElse: () => Plan(name: '', tasks: []),
+          );
+
+          if (currentPlan.name.isEmpty) {
+            return Center(child: Text("Plan not found"));
+          }
+
+          return Column(
+            children: [
+              Expanded(child: _buildList(currentPlan)),
+              SafeArea(child: Text(currentPlan.completnessMessage)),
+            ],
+          );
+        },
       ),
-      body: ValueListenableBuilder<Plan>(
-          valueListenable: PlanProvider.of(context),
-          builder: (context, plan, child) {
-            return Column(
-              children: [
-                Expanded(child: _buildList(plan)),
-                SafeArea(child: Text(plan.completnessMessage)),
-              ],
-            );
-          }),
       floatingActionButton: _buildAddTaskButton(context),
     );
   }
 
   Widget _buildAddTaskButton(BuildContext context) {
-    ValueNotifier<Plan> planNotifier = PlanProvider.of(context);
+    final planNotifier = PlanProvider.of(context);
+
     return FloatingActionButton(
       child: const Icon(Icons.add),
       onPressed: () {
-        Plan currentPlan = planNotifier.value;
-        planNotifier.value = Plan(
-          name: currentPlan.name,
-          tasks: List<Task>.from(currentPlan.tasks)..add(Task()),
+        final currentPlan = planNotifier.value.firstWhere(
+          (p) => p.name == widget.planName,
+          orElse: () => Plan(name: '', tasks: []),
         );
+
+        if (currentPlan.name.isNotEmpty) {
+          List<Task> updatedTasks = [...currentPlan.tasks, const Task()];
+          planNotifier.value = planNotifier.value.map((p) {
+            if (p.name == currentPlan.name) {
+              return Plan(name: p.name, tasks: updatedTasks);
+            }
+            return p;
+          }).toList();
+        }
       },
     );
   }
@@ -73,33 +92,55 @@ class _PlanScreenState extends State<PlanScreen> {
   }
 
   Widget _buildTaskTile(Task task, int index, BuildContext context) {
-    ValueNotifier<Plan> planNotifier = PlanProvider.of(context);
+    final planNotifier = PlanProvider.of(context);
+
     return ListTile(
       leading: Checkbox(
         value: task.complete,
         onChanged: (selected) {
-          Plan currentPlan = planNotifier.value;
-          planNotifier.value = Plan(
-              name: currentPlan.name,
-              tasks: List<Task>.from(currentPlan.tasks)
-                ..[index] = Task(
-                  description: task.description,
-                  complete: selected ?? false,
-                ));
+          final currentPlan = planNotifier.value.firstWhere(
+            (p) => p.name == widget.planName,
+            orElse: () => Plan(name: '', tasks: []),
+          );
+
+          if (currentPlan.name.isNotEmpty) {
+            List<Task> updatedTasks = [...currentPlan.tasks];
+            updatedTasks[index] = Task(
+              description: task.description,
+              complete: selected ?? false,
+            );
+
+            planNotifier.value = planNotifier.value.map((p) {
+              if (p.name == currentPlan.name) {
+                return Plan(name: p.name, tasks: updatedTasks);
+              }
+              return p;
+            }).toList();
+          }
         },
       ),
       title: TextFormField(
         initialValue: task.description,
         onChanged: (text) {
-          Plan currentPlan = planNotifier.value;
-          planNotifier.value = Plan(
-            name: currentPlan.name,
-            tasks: List<Task>.from(currentPlan.tasks)
-              ..[index] = Task(
-                description: text,
-                complete: task.complete,
-              ),
+          final currentPlan = planNotifier.value.firstWhere(
+            (p) => p.name == widget.planName,
+            orElse: () => Plan(name: '', tasks: []),
           );
+
+          if (currentPlan.name.isNotEmpty) {
+            List<Task> updatedTasks = [...currentPlan.tasks];
+            updatedTasks[index] = Task(
+              description: text,
+              complete: task.complete,
+            );
+
+            planNotifier.value = planNotifier.value.map((p) {
+              if (p.name == currentPlan.name) {
+                return Plan(name: p.name, tasks: updatedTasks);
+              }
+              return p;
+            }).toList();
+          }
         },
       ),
     );

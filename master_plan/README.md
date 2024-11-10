@@ -41,3 +41,13 @@ yang dimaksud InheritedWidget pada langkah 1 yaitu classs PlanProvider karena Pl
 
 ## 4. Hasil dari Langkah 9
 ![alt text](images/praktikum-2.gif)
+
+# Praktikum 3
+## 1. Selesaikan langkah-langkah praktikum tersebut, lalu dokumentasikan berupa GIF hasil akhir praktikum beserta penjelasannya di file README.md! Jika Anda menemukan ada yang error atau tidak berjalan dengan baik, silakan diperbaiki sesuai dengan tujuan aplikasi tersebut dibuat.
+![alt text](images/praktikum-3.gif)
+## 2. Berdasarkan Praktikum 3 yang telah Anda lakukan, jelaskan maksud dari gambar diagram berikut ini!
+![alt text](images/image.png) <br>
+- gambar diagram tersebut menjelaskan bahwa plan provider dan plancreatorscreen menyediakan penambahan plan utama, jika plan utama tersebut ditekan maka akan menuju ke PlanScreen sehingga bisa menambahkan task-task yang harus diselesaikan sesuai dengan plan utama yang dibuat.
+
+## 3. Lakukan capture hasil dari Langkah 14 berupa GIF, kemudian jelaskan apa yang telah Anda buat!
+![alt text](images/praktikum-3.gif)
