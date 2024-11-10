@@ -32,7 +32,8 @@ class _PlanScreenState extends State<PlanScreen> {
       // berikan warna pada addbar
 
       appBar: AppBar(
-        title: const Text('Master Plan Fathurrozak'),
+        title: const Text('Master Plan Fathurrozak',
+            style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.purple,
       ),
       body: _buildList(),

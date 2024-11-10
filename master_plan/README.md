@@ -1,37 +1,29 @@
-# master_plan
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-
 # Praktikum 1 - Dasar State dengan Model-View
 ## Hasil Praktikum 
-
+![alt text](images/praktikum-1.gif)
 
 
 ## Penjelasan langkah 4
 ```batch
-Agar lebih ringkat untuk import modelnya, sehingga jika memiliki model lebih dari satu maka tidak perlu mengimport satu persatu model yang dimiliki
+Agar lebih ringkas untuk import modelnya, sehingga jika memiliki model lebih dari satu maka tidak perlu mengimport satu persatu model yang dimiliki
 ``` 
 
 ## Mengapa perlu variabel plan di langkah 6 pada praktikum tersebut? Mengapa dibuat konstanta
-Karena variabel plan nantinya akan diisi dengan value dan menggunakan const karena pada plan.dart menggunakan const, selain itu const digunakan untuk 
+```batch
+Karena variabel plan nantinya akan diisi dengan value yang berisi tugas dan menggunakan const karena untuk menyimpan value yang tidak berubah selama program dieksekusi atau valuenya tetap.
+```
 
 
 ## Hasil langkah 9
-
+```batch
+Pada Langkah 9 ini membuat kode untuk menampilkan dan mengelola task yang ada di daftar plan. status task yang ditampilkan dalam list dapat diubah selesai atau tidaknya dengan menekan checkbox 
+```
+![alt text](images/praktikum-1.gif)
 
 
 ## Kegunaan method langkah 11 & 13 dalam lifecycle state
+```batch
+- Method initState pada langkah 11 digunakan untuk inisialisasi scrollController dan menambahkan listener di dalamnya. sehingga setiap scroll fokus input akan otomatis hilang
+
+- Method dispose pada langkah 13 digunakan untuk menghapus atau menghilangkan scrollController
+```
