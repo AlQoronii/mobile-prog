@@ -37,7 +37,7 @@ yang dimaksud InheritedWidget pada langkah 1 yaitu classs PlanProvider karena Pl
 ## 3. Jelaskan maksud dari method di langkah 3 pada praktikum tersebut! Mengapa dilakukan demikian?
 
 - method completedCount digunakan untuk menghitung task yang selesai (task yang telah ditekan checkbox)
-- method completenessMessage digunakan untuk memberikan pesan berapa task yang sudah terselesaikan dari banyaknya task yang sudah dibuat dengan cara mengambil method completedCount untuk task yang sudah selesai dan mengambil banyaknya task yang sudah dibuat.
+- method completenessMessage digunakan untuk memberikan pesan berapa task yang sudah terselesaikan dari banyaknya task yang sudah dibuat. Caranya dengan mengambil method completedCount untuk task yang sudah selesai dan mengambil banyaknya task yang sudah dibuat.
 
 ## 4. Hasil dari Langkah 9
 ![alt text](images/praktikum-2.gif)
