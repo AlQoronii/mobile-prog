@@ -34,3 +34,11 @@ Perbedaan dari kode tersebut yaitu kode langkah 1 digunakan untuk mengembalikan 
 Tidak bisa mendapatkan koordinat GPS, karena permission hanya bisa digunakan pada android device. <br>
 Berikut adalah hasil praktikumnya. <br>
 ![alt text](geolocation.gif)
+
+# Soal 13
+Ada perbedaan, yaitu ketika memanggil getPosition terdapat Future.delayed selama 3 detik sehingga loading screen akan lebih lama dijalankan. 
+![alt text](geolocation1.gif)
+
+# Soal 14
+Tidak ada perbedaan, akan tetapi jika terjadi error maka text something terrible happened! akan muncul sebagai handling errornya.
+![alt text](geolocation1.gif)
