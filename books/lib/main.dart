@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo Fathurrozak',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -34,7 +35,7 @@ class _FuturePageState extends State<FuturePage> {
   String result = '';
   Future<Response> getData() async {
     const authority = 'www.googleapis.com';
-    const path = '/books/v1/volumes/CQ7VVtkykQYC';
+    const path = '/books/v1/volumes/I9TBDwAAQBAJ';
     Uri url = Uri.https(authority, path);
     return get(url);
   }
@@ -43,7 +44,9 @@ class _FuturePageState extends State<FuturePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Back from the Future Fathurrozak'),
+        title: const Text('Back from the Future Fathurrozak',
+            style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.blue,
       ),
       body: Center(
         child: Column(
@@ -51,7 +54,16 @@ class _FuturePageState extends State<FuturePage> {
             const Spacer(),
             ElevatedButton(
               child: const Text('Go!'),
-              onPressed: () {},
+              onPressed: () {
+                setState(() {});
+                getData().then((value) {
+                  result = value.body.toString().substring(0, 450);
+                  setState(() {});
+                }).catchError(() {
+                  result = 'An error occurred';
+                  setState(() {});
+                });
+              },
             ),
             const Spacer(),
             Text(result),
