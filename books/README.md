@@ -25,3 +25,7 @@ Sehingga kode langkah 4 lebih sederhana dan lebih mudah dibaca sedangkan kode la
 # Soal 9
 ![alt text](image-2.png)
 ![alt text](image-3.png)
+
+# Soal 10
+Hasilnya sama dengan jawaban soal nomor 9. <br>
+Perbedaan dari kode tersebut yaitu kode langkah 1 digunakan untuk mengembalikan error dengan menunda selama 2 detik kemudian melakukan throw Exception, sedangkan kode langkah 4 digunakan untuk menangani error yang terjadi di dalam kode langkah 1. Sehingga dengan menggunakan handleError akan mempersingkat kode yang ada di ElvatedButton, karena sebelumnya penanganan Error berada di dalam ElevatedButton.
