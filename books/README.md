@@ -1,5 +1,9 @@
-# Menampilkan data JSON di Browser
+# Soal 1 & 2
 ![alt text](image.png)
 
-# Menampilkan data JSON di android emulator
+
+# Soal 3
 ![alt text](image-1.png)
+
+# Soal 4
+![alt text](count.gif)
